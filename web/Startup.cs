@@ -9,13 +9,17 @@ using Microsoft.Extensions.DependencyModel;
 using System.Linq;
 using System.Collections.Generic;
 using Cmas.Backend.Infrastructure.Domain.Commands;
+using Cmas.Backend.Infrastructure.Domain.Queries;
 
-namespace web
+namespace Web
 {
     public class Startup
     {
         public IServiceProvider ConfigureServices(IServiceCollection services)
         {
+
+            var QueryBuilder = new QueryBuilder(null);
+
             var builder = new ContainerBuilder();
 
             var assemblies = GetReferencingAssemblies("Cmas");
@@ -25,10 +29,18 @@ namespace web
                 builder
                  .RegisterAssemblyTypes(assembly)
                  .AsClosedTypesOf(typeof(ICommand<>));
+
+               /*builder
+                .RegisterAssemblyTypes(assembly)
+                .AsClosedTypesOf(typeof(IQuery<,>));*/
             }
 
             builder.RegisterType<CommandBuilder>().As<ICommandBuilder>();
+            builder.RegisterType<QueryBuilder>().As<IQueryBuilder>();
+            builder.RegisterType<QueryFactory>().As<IQueryFactory>();
 
+            builder.RegisterGeneric(typeof(QueryFor<>)).As(typeof(IQueryFor<>));
+            
             builder.Register<Func<Type, object>>(c =>
             {
                 var componentContext = c.Resolve<IComponentContext>();
@@ -38,8 +50,9 @@ namespace web
             });
 
             builder.Populate(services);
-
+            
             var container = builder.Build();
+             
 
             return container.Resolve<IServiceProvider>();
         }

@@ -5,7 +5,7 @@ using Nancy;
 using Nancy.Bootstrapper;
 using Nancy.Bootstrappers.Autofac;
 
-namespace web
+namespace Web
 {
     public class Bootstrapper : AutofacNancyBootstrapper
     {

@@ -1,4 +1,5 @@
 using Cmas.Backend.Infrastructure.Domain.Commands;
+using Cmas.Backend.Infrastructure.Domain.Queries;
 using Cmas.Backend.Modules.Contracts.Forms;
 using Cmas.Backend.Modules.Contracts.Services;
 using Nancy;
@@ -9,20 +10,22 @@ namespace Cmas.Backend.Modules.Contracts
     public class ContractsModule : NancyModule
     {
         private readonly ICommandBuilder _commandBuilder;
+        private readonly IQueryBuilder _queryBuilder;
         private readonly ContractService _contractService;
 
-        public ContractsModule(ICommandBuilder commandBuilder) : base("/contracts")
+        public ContractsModule(ICommandBuilder commandBuilder, IQueryBuilder queryBuilder) : base("/contracts")
         {
             _commandBuilder = commandBuilder;
-            _contractService = new ContractService(_commandBuilder);
+            _queryBuilder = queryBuilder;
+            _contractService = new ContractService(_commandBuilder, _queryBuilder);
 
 
             Get("/", _ => {
-                return "contracts";
+                return _contractService.GetContract("1");
             });
             Get("/{id}", _ => "get contract");
 
-
+            
             Post("/", async (args, ct) =>
             {
                 CreateContractForm form = this.Bind();

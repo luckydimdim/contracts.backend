@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 
-namespace web {
+namespace Web {
     public class Program
     {
         public static void Main(string[] args)
