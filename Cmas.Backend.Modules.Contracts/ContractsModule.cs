@@ -21,16 +21,18 @@ namespace Cmas.Backend.Modules.Contracts
 
 
             Get("/", _ => {
-                return _contractService.GetContract("1");
+                return _contractService.GetContracts();
             });
-            Get("/{id}", _ => "get contract");
+
+
+            Get("/{id}", args => _contractService.GetContract(args.id));
 
             
             Post("/", async (args, ct) =>
             {
                 CreateContractForm form = this.Bind();
 
-               int result = await _contractService.CreateContract(form);
+               var result = await _contractService.CreateContract(form);
 
                 return result.ToString();
             });

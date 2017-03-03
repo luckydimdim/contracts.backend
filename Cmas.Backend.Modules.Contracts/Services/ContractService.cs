@@ -4,6 +4,7 @@ using Cmas.Backend.Modules.Contracts.CommandsContexts;
 using Cmas.Backend.Modules.Contracts.Criteria;
 using Cmas.Backend.Modules.Contracts.Entities;
 using Cmas.Backend.Modules.Contracts.Forms;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Cmas.Backend.Modules.Contracts.Services
@@ -20,7 +21,7 @@ namespace Cmas.Backend.Modules.Contracts.Services
         }
 
 
-       public async Task<int> CreateContract(CreateContractForm form)
+       public async Task<string> CreateContract(CreateContractForm form)
         {
             var context = new CreateContractCommandContext
             {
@@ -43,14 +44,16 @@ namespace Cmas.Backend.Modules.Contracts.Services
             return context.id;
         }
 
-        public Contract GetContract(string id)
+        public async Task<Contract> GetContract(string id)
         {
 
-            Contract result = _queryBuilder.For<Contract>().With(new FindById { Id ="1" });
-
-            return result;
+            return await _queryBuilder.For<Task<Contract>>().With(new FindById { Id = "26270cfa2422b2c4ebf158285e0107c6" });
         }
 
+        public async Task<IEnumerable<Contract>> GetContracts()
+        {
+            return await _queryBuilder.For<Task<IEnumerable<Contract>>>().With(new AllEntities());
+        }
 
     }
 }
