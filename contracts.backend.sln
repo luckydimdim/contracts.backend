@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26206.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "contracts.backend", "contracts.backend\contracts.backend.csproj", "{804636C1-3F63-47F4-B0A9-7774422B89B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cmas.Backend.Modules.Contracts", "Cmas.Backend.Modules.Contracts\Cmas.Backend.Modules.Contracts.csproj", "{804636C1-3F63-47F4-B0A9-7774422B89B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "web", "web\web.csproj", "{D36C01AE-883E-412A-8369-7CFDC461A7B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web", "Web\Web.csproj", "{D36C01AE-883E-412A-8369-7CFDC461A7B5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

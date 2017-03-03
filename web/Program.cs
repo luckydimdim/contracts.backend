@@ -1,10 +1,8 @@
-﻿namespace contract.backend
-{
-    using System.IO;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using web;
+﻿using System.IO;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
 
+namespace web {
     public class Program
     {
         public static void Main(string[] args)
