@@ -26,13 +26,15 @@ namespace Web
             
             foreach (var assembly in assemblies)
             {
+                var t = assembly.DefinedTypes;
+
                 builder
                  .RegisterAssemblyTypes(assembly)
                  .AsClosedTypesOf(typeof(ICommand<>));
 
-               /*builder
+               builder
                 .RegisterAssemblyTypes(assembly)
-                .AsClosedTypesOf(typeof(IQuery<,>));*/
+                .AsClosedTypesOf(typeof(IQuery<,>));
             }
 
             builder.RegisterType<CommandBuilder>().As<ICommandBuilder>();
