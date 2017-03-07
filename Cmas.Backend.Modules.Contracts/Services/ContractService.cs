@@ -44,6 +44,30 @@ namespace Cmas.Backend.Modules.Contracts.Services
             return context.id;
         }
 
+        public async Task<string> UpdateContract(string id, UpdateContractForm form)
+        {
+            var context = new UpdateContractCommandContext
+            {
+                id = id,
+                Name = form.Name,
+                Number = form.Number,
+                StartDate = form.StartDate,
+                FinishDate = form.FinishDate,
+                ContractorName = form.ContractorName,
+                Currency = form.Currency,
+                Amount = form.Amount,
+                VatIncluded = form.VatIncluded,
+                ConstructionObjectName = form.ConstructionObjectName,
+                ConstructionObjectTitleName = form.ConstructionObjectTitleName,
+                ConstructionObjectTitleCode = form.ConstructionObjectTitleCode,
+                Description = form.Description
+            };
+
+            context = await _commandBuilder.Execute(context);
+
+            return context.id;
+        }
+
         public async Task<Contract> GetContract(string id)
         {
 

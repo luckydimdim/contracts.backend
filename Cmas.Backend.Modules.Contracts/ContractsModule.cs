@@ -25,7 +25,7 @@ namespace Cmas.Backend.Modules.Contracts
             });
 
 
-            Get("/{id}", args => _contractService.GetContract(args.id));
+            Get("/{id}", async args => await _contractService.GetContract(args.id));
 
             
             Post("/", async (args, ct) =>
@@ -33,6 +33,16 @@ namespace Cmas.Backend.Modules.Contracts
                 CreateContractForm form = this.Bind();
 
                var result = await _contractService.CreateContract(form);
+
+                return result.ToString();
+            });
+
+            Put("/{id}", async (args, ct) =>
+            {
+                UpdateContractForm form = this.Bind();
+
+
+                var result = await _contractService.UpdateContract(args.id, form);
 
                 return result.ToString();
             });
