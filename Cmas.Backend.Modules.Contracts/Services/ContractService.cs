@@ -47,7 +47,7 @@ namespace Cmas.Backend.Modules.Contracts.Services
         public async Task<Contract> GetContract(string id)
         {
 
-            return await _queryBuilder.For<Task<Contract>>().With(new FindById { Id = "26270cfa2422b2c4ebf158285e0107c6" });
+            return await _queryBuilder.For<Task<Contract>>().With(new FindById { Id = id });
         }
 
         public async Task<IEnumerable<Contract>> GetContracts()
