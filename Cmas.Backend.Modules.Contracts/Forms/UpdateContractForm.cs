@@ -4,6 +4,7 @@ namespace Cmas.Backend.Modules.Contracts.Forms
 {
     public class UpdateContractForm
     {
+        public String Id;
         public String Name;
         public String Number;
         public String StartDate;

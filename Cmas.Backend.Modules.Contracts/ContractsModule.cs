@@ -30,19 +30,19 @@ namespace Cmas.Backend.Modules.Contracts
             
             Post("/", async (args, ct) =>
             {
-                CreateContractForm form = this.Bind();
+                //CreateContractForm form = this.Bind();
+                CreateContractForm form = new CreateContractForm();
 
-               var result = await _contractService.CreateContract(form);
+                var result = await _contractService.CreateContract(form);
 
                 return result.ToString();
             });
 
-            Put("/{id}", async (args, ct) =>
+            Put("/", async (args, ct) =>
             {
                 UpdateContractForm form = this.Bind();
-
-
-                var result = await _contractService.UpdateContract(args.id, form);
+                 
+                var result = await _contractService.UpdateContract(form.Id, form);
 
                 return result.ToString();
             });
