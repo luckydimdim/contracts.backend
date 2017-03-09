@@ -33,7 +33,7 @@ namespace Cmas.Backend.Modules.Contracts
                 //CreateContractForm form = this.Bind();
                 CreateContractForm form = new CreateContractForm();
 
-                var result = await _contractService.CreateContract(form);
+                string result = await _contractService.CreateContract(form);
 
                 return result.ToString();
             });
@@ -42,9 +42,14 @@ namespace Cmas.Backend.Modules.Contracts
             {
                 UpdateContractForm form = this.Bind();
                  
-                var result = await _contractService.UpdateContract(form.Id, form);
+                string result = await _contractService.UpdateContract(form.Id, form);
 
                 return result.ToString();
+            });
+
+            Delete("/{id}", args =>
+            {
+                return "{\"OK\": \"true\"}";
             });
         }
  
