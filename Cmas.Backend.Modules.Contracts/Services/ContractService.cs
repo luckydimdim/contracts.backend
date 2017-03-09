@@ -68,7 +68,12 @@ namespace Cmas.Backend.Modules.Contracts.Services
             return context.id;
         }
 
-        public async Task<string> GetContract(string id)
+        public async Task<Contract> GetContract(string id)
+        {
+            return await _queryBuilder.For<Task<Contract>>().With(new FindById { Id = id });
+        }
+
+        public async Task<string> DeleteContract(string id)
         {
 
             var context = new DeleteContractCommandContext
@@ -79,12 +84,6 @@ namespace Cmas.Backend.Modules.Contracts.Services
             context = await _commandBuilder.Execute(context);
 
             return context.id;
-        }
-
-        public async Task<Contract> DeleteContract(string id)
-        {
-
-            return await _queryBuilder.For<Task<Contract>>().With(new FindById { Id = id });
         }
 
         public async Task<IEnumerable<Contract>> GetContracts()
