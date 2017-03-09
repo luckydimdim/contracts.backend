@@ -68,7 +68,20 @@ namespace Cmas.Backend.Modules.Contracts.Services
             return context.id;
         }
 
-        public async Task<Contract> GetContract(string id)
+        public async Task<string> GetContract(string id)
+        {
+
+            var context = new DeleteContractCommandContext
+            {
+                id = id
+            };
+
+            context = await _commandBuilder.Execute(context);
+
+            return context.id;
+        }
+
+        public async Task<Contract> DeleteContract(string id)
         {
 
             return await _queryBuilder.For<Task<Contract>>().With(new FindById { Id = id });

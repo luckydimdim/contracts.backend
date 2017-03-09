@@ -47,9 +47,9 @@ namespace Cmas.Backend.Modules.Contracts
                 return result.ToString();
             });
 
-            Delete("/{id}", args =>
+            Delete("/{id}", async args =>
             {
-                return "{\"OK\": \"true\"}";
+                return await _contractService.DeleteContract(args.id);
             });
         }
  
